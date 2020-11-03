@@ -2,5 +2,7 @@ robotframework
 robotframework-requests
 robotframework-jsonlibrary
 robotframework-seleniumlibrary
+robotframework-react
+robotframework-pabot
 psycopg2
 requests
