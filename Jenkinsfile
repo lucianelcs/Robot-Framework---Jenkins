@@ -1,7 +1,7 @@
 pipeline {
    agent {
        docker {
-           image 'qaninja/pyrobot'
+           image 'lsantos2020/robotweb'
            args '--network=skynet'
        }
    }
