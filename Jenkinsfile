@@ -1,7 +1,7 @@
 pipeline {
    agent {
        docker {
-           image 'qaninja/pyrobot2'
+           image 'qaninja/pyrobot'
            args '--network=skynet'
        }
    }
