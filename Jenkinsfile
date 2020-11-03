@@ -1,7 +1,7 @@
 pipeline {
    agent {
        docker {
-           image 'lsantos2020/robotweb'
+           image 'lsantos/robotweb'
            args '--network=skynet'
        }
    }
@@ -17,7 +17,26 @@ pipeline {
          steps {
             echo 'Executando testes de regressão'
             sh 'python -m robot  -d ./results ./tests'
-         }         
+         }
+         post {
+        	always {
+		        script {
+		          step(
+			            [
+			              $class              : 'RobotPublisher',
+			              outputPath          : 'reports',
+			              outputFileName      : '**/output.xml',
+			              reportFileName      : '**/report.html',
+			              logFileName         : '**/log.html',
+			              disableArchiveOutput: false,
+			              passThreshold       : 50,
+			              unstableThreshold   : 40,
+			              otherFiles          : "**/*.png,**/*.jpg",
+			            ]
+		          	)
+		        }
+	  		}		
+	    }
       }
       stage('UAT') {
          steps {
