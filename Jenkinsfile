@@ -1,7 +1,7 @@
 pipeline {
    agent {
        docker {
-           image 'python'
+           image 'qaninja/pyrobot'
            args '--network=skynet'
        }
    }
@@ -16,7 +16,7 @@ pipeline {
       stage('Test') {
          steps {
             echo 'Executando testes de regressão'
-            sh 'python -m robot  -d ./results ./tests'
+            sh 'python -m robot  -d ./results ../tests'
          }
          post {
             always {
