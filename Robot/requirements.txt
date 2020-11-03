@@ -1,5 +1,0 @@
-robotframework
-robotframework-requests
-robotframework-jsonlibrary
-psycopg2
-requests
