@@ -1,5 +1,6 @@
 robotframework
 robotframework-requests
 robotframework-jsonlibrary
+SeleniumLibrary
 psycopg2
 requests
