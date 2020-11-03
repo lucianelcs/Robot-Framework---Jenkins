@@ -17,12 +17,7 @@ pipeline {
          steps {
             echo 'Executando testes de regressão'
             sh 'python -m robot  -d ./results ./tests'
-         }
-         post {
-            always {
-               robot 'logs'
-            }
-         }
+         }         
       }
       stage('UAT') {
          steps {
