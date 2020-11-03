@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot rpa="false" generated="20201102 15:41:19.380" generator="Robot 3.2 (Python 2.7.10 on darwin)">
+<suite source="/Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/tests" id="s1" name="Tests">
+<suite source="/Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/tests/Cadastro.robot" id="s1-s1" name="Cadastro">
+<kw type="setup" name="Open Session" library="BasePage">
+<kw name="Open Chrome" library="BasePage">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${base_url}/accounts/login/</arg>
+<arg>chrome</arg>
+<arg>options=add_experimental_option('excludeSwitches', ['enable-logging'])</arg>
+</arguments>
+<msg timestamp="20201102 15:41:19.657" level="INFO">Opening browser 'chrome' to base url 'http://www.inmrobo.tk/accounts/login/'.</msg>
+<status status="PASS" endtime="20201102 15:41:26.474" starttime="20201102 15:41:19.657"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:26.474" starttime="20201102 15:41:19.656"></status>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<arguments>
+<arg>10</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:41:26.477" starttime="20201102 15:41:26.475"></status>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<arguments>
+<arg>1280</arg>
+<arg>800</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:41:26.654" starttime="20201102 15:41:26.478"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:26.654" starttime="20201102 15:41:19.656"></status>
+</kw>
+<test id="s1-s1-t1" name="Cadastro com sucesso">
+<kw name="Dado que eu acesso a página de login" library="actions">
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${base_url}/accounts/login</arg>
+</arguments>
+<msg timestamp="20201102 15:41:26.659" level="INFO">Opening url 'http://www.inmrobo.tk/accounts/login'</msg>
+<status status="PASS" endtime="20201102 15:41:27.758" starttime="20201102 15:41:26.658"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:27.759" starttime="20201102 15:41:26.658"></status>
+</kw>
+<kw name="Quando eu faço o cadastro do usuário" library="actions">
+<arguments>
+<arg>usuario.json</arg>
+</arguments>
+<kw name="Get Lista Json" library="actions">
+<arguments>
+<arg>${file_name}</arg>
+</arguments>
+<assign>
+<var>${lista_json}</var>
+</assign>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>resources/fixtures/${file_name}</arg>
+</arguments>
+<assign>
+<var>${file}</var>
+</assign>
+<msg timestamp="20201102 15:41:27.762" html="yes" level="INFO">Getting file '&lt;a href="file:///Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/resources/fixtures/usuario.json"&gt;/Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/resources/fixtures/usuario.json&lt;/a&gt;'.</msg>
+<msg timestamp="20201102 15:41:27.762" level="INFO">${file} = {
+    "username": "test_immetric_QA_002",
+    "pass": "123456",
+    "confirmpass": "123456"
+}</msg>
+<status status="PASS" endtime="20201102 15:41:27.763" starttime="20201102 15:41:27.760"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>json.loads($file)</arg>
+<arg>json</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20201102 15:41:27.766" level="INFO">${json} = {u'username': u'test_immetric_QA_002', u'confirmpass': u'123456', u'pass': u'123456'}</msg>
+<status status="PASS" endtime="20201102 15:41:27.766" starttime="20201102 15:41:27.763"></status>
+</kw>
+<msg timestamp="20201102 15:41:27.767" level="INFO">${lista_json} = {u'username': u'test_immetric_QA_002', u'confirmpass': u'123456', u'pass': u'123456'}</msg>
+<status status="PASS" endtime="20201102 15:41:27.767" starttime="20201102 15:41:27.760"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:txt2</arg>
+</arguments>
+<msg timestamp="20201102 15:41:27.767" level="INFO">Clicking element 'class:txt2'.</msg>
+<status status="PASS" endtime="20201102 15:41:28.816" starttime="20201102 15:41:27.767"></status>
+</kw>
+<kw name="Cadastro novo usuario" library="CadastroPage">
+<arguments>
+<arg>${lista_json}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=username]</arg>
+<arg>${usuario_json['username']}</arg>
+</arguments>
+<msg timestamp="20201102 15:41:28.818" level="INFO">Typing text 'test_immetric_QA_002' into text field 'css:input[name=username]'.</msg>
+<status status="PASS" endtime="20201102 15:41:29.229" starttime="20201102 15:41:28.818"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=pass]</arg>
+<arg>${usuario_json['pass']}</arg>
+</arguments>
+<msg timestamp="20201102 15:41:29.231" level="INFO">Typing text '123456' into text field 'css:input[name=pass]'.</msg>
+<status status="PASS" endtime="20201102 15:41:29.597" starttime="20201102 15:41:29.229"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=confirmpass]</arg>
+<arg>${usuario_json['confirmpass']}</arg>
+</arguments>
+<msg timestamp="20201102 15:41:29.598" level="INFO">Typing text '123456' into text field 'css:input[name=confirmpass]'.</msg>
+<status status="PASS" endtime="20201102 15:41:29.748" starttime="20201102 15:41:29.597"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:login100-form-btn</arg>
+</arguments>
+<msg timestamp="20201102 15:41:29.748" level="INFO">Clicking element 'class:login100-form-btn'.</msg>
+<status status="PASS" endtime="20201102 15:41:31.374" starttime="20201102 15:41:29.748"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:31.374" starttime="20201102 15:41:28.817"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:31.374" starttime="20201102 15:41:27.759"></status>
+</kw>
+<kw type="teardown" name="After Test" library="BasePage">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20201102 15:41:32.508" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20201102 15:41:32.509" starttime="20201102 15:41:31.375"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:32.509" starttime="20201102 15:41:31.375"></status>
+</kw>
+<tags>
+<tag>cadastro</tag>
+</tags>
+<status status="PASS" endtime="20201102 15:41:32.509" critical="yes" starttime="20201102 15:41:26.655"></status>
+</test>
+<test id="s1-s1-t2" name="Este cadastro já existe">
+<kw name="Quando eu faço o cadastro do usuário" library="actions">
+<arguments>
+<arg>usuario.json</arg>
+</arguments>
+<kw name="Get Lista Json" library="actions">
+<arguments>
+<arg>${file_name}</arg>
+</arguments>
+<assign>
+<var>${lista_json}</var>
+</assign>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>resources/fixtures/${file_name}</arg>
+</arguments>
+<assign>
+<var>${file}</var>
+</assign>
+<msg timestamp="20201102 15:41:32.514" html="yes" level="INFO">Getting file '&lt;a href="file:///Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/resources/fixtures/usuario.json"&gt;/Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/resources/fixtures/usuario.json&lt;/a&gt;'.</msg>
+<msg timestamp="20201102 15:41:32.514" level="INFO">${file} = {
+    "username": "test_immetric_QA_002",
+    "pass": "123456",
+    "confirmpass": "123456"
+}</msg>
+<status status="PASS" endtime="20201102 15:41:32.514" starttime="20201102 15:41:32.512"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>json.loads($file)</arg>
+<arg>json</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20201102 15:41:32.515" level="INFO">${json} = {u'username': u'test_immetric_QA_002', u'confirmpass': u'123456', u'pass': u'123456'}</msg>
+<status status="PASS" endtime="20201102 15:41:32.515" starttime="20201102 15:41:32.515"></status>
+</kw>
+<msg timestamp="20201102 15:41:32.516" level="INFO">${lista_json} = {u'username': u'test_immetric_QA_002', u'confirmpass': u'123456', u'pass': u'123456'}</msg>
+<status status="PASS" endtime="20201102 15:41:32.516" starttime="20201102 15:41:32.511"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:txt2</arg>
+</arguments>
+<msg timestamp="20201102 15:41:32.516" level="INFO">Clicking element 'class:txt2'.</msg>
+<status status="PASS" endtime="20201102 15:41:33.525" starttime="20201102 15:41:32.516"></status>
+</kw>
+<kw name="Cadastro novo usuario" library="CadastroPage">
+<arguments>
+<arg>${lista_json}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=username]</arg>
+<arg>${usuario_json['username']}</arg>
+</arguments>
+<msg timestamp="20201102 15:41:33.526" level="INFO">Typing text 'test_immetric_QA_002' into text field 'css:input[name=username]'.</msg>
+<status status="PASS" endtime="20201102 15:41:33.646" starttime="20201102 15:41:33.526"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=pass]</arg>
+<arg>${usuario_json['pass']}</arg>
+</arguments>
+<msg timestamp="20201102 15:41:33.647" level="INFO">Typing text '123456' into text field 'css:input[name=pass]'.</msg>
+<status status="PASS" endtime="20201102 15:41:33.737" starttime="20201102 15:41:33.646"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=confirmpass]</arg>
+<arg>${usuario_json['confirmpass']}</arg>
+</arguments>
+<msg timestamp="20201102 15:41:33.739" level="INFO">Typing text '123456' into text field 'css:input[name=confirmpass]'.</msg>
+<status status="PASS" endtime="20201102 15:41:34.168" starttime="20201102 15:41:33.738"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:login100-form-btn</arg>
+</arguments>
+<msg timestamp="20201102 15:41:34.168" level="INFO">Clicking element 'class:login100-form-btn'.</msg>
+<status status="PASS" endtime="20201102 15:41:35.411" starttime="20201102 15:41:34.168"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:35.411" starttime="20201102 15:41:33.525"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:35.411" starttime="20201102 15:41:32.510"></status>
+</kw>
+<kw type="teardown" name="After Test WCLS" library="BasePage">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20201102 15:41:36.141" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20201102 15:41:36.141" starttime="20201102 15:41:35.414"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>localStorage.clear();</arg>
+</arguments>
+<msg timestamp="20201102 15:41:36.143" level="INFO">Executing JavaScript:
+localStorage.clear();
+Without any arguments.</msg>
+<status status="PASS" endtime="20201102 15:41:36.165" starttime="20201102 15:41:36.142"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:36.165" starttime="20201102 15:41:35.413"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:36.165" critical="yes" starttime="20201102 15:41:32.510"></status>
+</test>
+<kw type="teardown" name="Close Session" library="BasePage">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20201102 15:41:36.541" starttime="20201102 15:41:36.168"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:41:36.543" starttime="20201102 15:41:36.167"></status>
+</kw>
+<doc>Cadastro de usuário
+Sendo um usuário do sistema
+Quero cadastrar no sistema
+Para ter acesso a lista de funcionários</doc>
+<status status="PASS" endtime="20201102 15:41:36.543" starttime="20201102 15:41:19.406"></status>
+</suite>
+<suite source="/Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/tests/CadastroFuncionario.robot" id="s1-s2" name="CadastroFuncionario">
+<kw type="setup" name="Open Session" library="BasePage">
+<kw name="Open Chrome" library="BasePage">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${base_url}/accounts/login/</arg>
+<arg>chrome</arg>
+<arg>options=add_experimental_option('excludeSwitches', ['enable-logging'])</arg>
+</arguments>
+<msg timestamp="20201102 15:41:36.636" level="INFO">Opening browser 'chrome' to base url 'http://www.inmrobo.tk/accounts/login/'.</msg>
+<status status="PASS" endtime="20201102 15:42:00.476" starttime="20201102 15:41:36.632"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:42:00.479" starttime="20201102 15:41:36.632"></status>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<arguments>
+<arg>10</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:42:00.486" starttime="20201102 15:42:00.481"></status>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<arguments>
+<arg>1280</arg>
+<arg>800</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:42:00.625" starttime="20201102 15:42:00.486"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:42:00.625" starttime="20201102 15:41:36.631"></status>
+</kw>
+<test id="s1-s2-t1" name="Cadastrar Funcionario">
+<kw name="Dado que eu acesso a página de login" library="actions">
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${base_url}/accounts/login</arg>
+</arguments>
+<msg timestamp="20201102 15:42:00.643" level="INFO">Opening url 'http://www.inmrobo.tk/accounts/login'</msg>
+<status status="PASS" endtime="20201102 15:42:01.772" starttime="20201102 15:42:00.643"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:42:01.773" starttime="20201102 15:42:00.641"></status>
+</kw>
+<kw name="Login para cadastrar funcionario &quot;lucianeTest&quot; e &quot;123456&quot;" library="actions">
+<kw name="Login With" library="LoginPage">
+<arguments>
+<arg>${username}</arg>
+<arg>${pass}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=username]</arg>
+<arg>${username}</arg>
+</arguments>
+<msg timestamp="20201102 15:42:01.777" level="INFO">Typing text 'lucianeTest' into text field 'css:input[name=username]'.</msg>
+<status status="PASS" endtime="20201102 15:42:02.083" starttime="20201102 15:42:01.776"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=pass]</arg>
+<arg>${pass}</arg>
+</arguments>
+<msg timestamp="20201102 15:42:02.086" level="INFO">Typing text '123456' into text field 'css:input[name=pass]'.</msg>
+<status status="PASS" endtime="20201102 15:42:02.236" starttime="20201102 15:42:02.084"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:login100-form-btn</arg>
+</arguments>
+<msg timestamp="20201102 15:42:02.237" level="INFO">Clicking element 'class:login100-form-btn'.</msg>
+<status status="PASS" endtime="20201102 15:42:44.596" starttime="20201102 15:42:02.237"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:42:44.598" starttime="20201102 15:42:01.774"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:42:44.599" starttime="20201102 15:42:01.774"></status>
+</kw>
+<kw name="Quando eu faço o cadastro do funcionario" library="actions">
+<arguments>
+<arg>funcionario_pj.json</arg>
+</arguments>
+<kw name="Get Lista Json" library="actions">
+<arguments>
+<arg>${file_name}</arg>
+</arguments>
+<assign>
+<var>${lista_json}</var>
+</assign>
+<kw name="Get File" library="OperatingSystem">
+<doc>Returns the contents of a specified file.</doc>
+<arguments>
+<arg>resources/fixtures/${file_name}</arg>
+</arguments>
+<assign>
+<var>${file}</var>
+</assign>
+<msg timestamp="20201102 15:42:44.609" html="yes" level="INFO">Getting file '&lt;a href="file:///Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/resources/fixtures/funcionario_pj.json"&gt;/Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/resources/fixtures/funcionario_pj.json&lt;/a&gt;'.</msg>
+<msg timestamp="20201102 15:42:44.611" level="INFO">${file} = {
+    "inputNome": "test_immetric_func",
+    "inputCargo": "QA",
+    "cpf": "011.867.696-29",
+    "dinheiro": "1.000,00",
+    "slctSexo": "Feminino",
+    "inputAdmissao": "10/10/2020",
+    "Pj": "pj",...</msg>
+<status status="PASS" endtime="20201102 15:42:44.611" starttime="20201102 15:42:44.606"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>json.loads($file)</arg>
+<arg>json</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20201102 15:42:44.614" level="INFO">${json} = {u'slctSexo': u'Feminino', u'inputNome': u'test_immetric_func', u'cpf': u'011.867.696-29', u'dinheiro': u'1.000,00', u'clt': u'clt', u'inputCargo': u'QA', u'inputAdmissao': u'10/10/2020', u'Pj': u'pj'...</msg>
+<status status="PASS" endtime="20201102 15:42:44.614" starttime="20201102 15:42:44.612"></status>
+</kw>
+<msg timestamp="20201102 15:42:44.614" level="INFO">${lista_json} = {u'slctSexo': u'Feminino', u'inputNome': u'test_immetric_func', u'cpf': u'011.867.696-29', u'dinheiro': u'1.000,00', u'clt': u'clt', u'inputCargo': u'QA', u'inputAdmissao': u'10/10/2020', u'Pj': u'pj'...</msg>
+<status status="PASS" endtime="20201102 15:42:44.615" starttime="20201102 15:42:44.604"></status>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<doc>Clicks a link identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//a[@href="/empregados/new_empregado"]</arg>
+</arguments>
+<msg timestamp="20201102 15:42:44.616" level="INFO">Clicking link 'xpath=//a[@href="/empregados/new_empregado"]'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.367" starttime="20201102 15:42:44.615"></status>
+</kw>
+<kw name="Cadastro novo funcionario" library="CadastroFuncionarioPage">
+<arguments>
+<arg>${lista_json}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=inputNome</arg>
+<arg>${funcionario_pj_json['inputNome']}</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.369" level="INFO">Typing text 'test_immetric_func' into text field 'id=inputNome'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.468" starttime="20201102 15:42:46.368"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=inputCargo</arg>
+<arg>${funcionario_pj_json['inputCargo']}</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.469" level="INFO">Typing text 'QA' into text field 'id=inputCargo'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.555" starttime="20201102 15:42:46.468"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=cpf</arg>
+<arg>${funcionario_pj_json['cpf']}</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.556" level="INFO">Typing text '011.867.696-29' into text field 'id=cpf'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.653" starttime="20201102 15:42:46.555"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=dinheiro</arg>
+<arg>${funcionario_pj_json['dinheiro']}</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.654" level="INFO">Typing text '1.000,00' into text field 'id=dinheiro'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.741" starttime="20201102 15:42:46.653"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=inputAdmissao</arg>
+<arg>${funcionario_pj_json['inputAdmissao']}</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.741" level="INFO">Typing text '10/10/2020' into text field 'id=inputAdmissao'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.821" starttime="20201102 15:42:46.741"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id=pj</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.821" level="INFO">Clicking element 'id=pj'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.865" starttime="20201102 15:42:46.821"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id=clt</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.866" level="INFO">Clicking element 'id=clt'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.944" starttime="20201102 15:42:46.866"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:cadastrar-form-btn</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.945" level="INFO">Clicking element 'class:cadastrar-form-btn'.</msg>
+<status status="PASS" endtime="20201102 15:42:46.998" starttime="20201102 15:42:46.945"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:42:46.998" starttime="20201102 15:42:46.368"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//select[@name="sexo"]/option[3]</arg>
+</arguments>
+<msg timestamp="20201102 15:42:46.999" level="INFO">Clicking element 'xpath=//select[@name="sexo"]/option[3]'.</msg>
+<status status="PASS" endtime="20201102 15:42:47.027" starttime="20201102 15:42:46.998"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id=pj</arg>
+</arguments>
+<msg timestamp="20201102 15:42:47.028" level="INFO">Clicking element 'id=pj'.</msg>
+<status status="PASS" endtime="20201102 15:42:47.053" starttime="20201102 15:42:47.027"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:cadastrar-form-btn</arg>
+</arguments>
+<msg timestamp="20201102 15:42:47.054" level="INFO">Clicking element 'class:cadastrar-form-btn'.</msg>
+<status status="PASS" endtime="20201102 15:43:21.838" starttime="20201102 15:42:47.053"></status>
+</kw>
+<kw name="Wait Until Element Contains" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<arguments>
+<arg>class:alert</arg>
+<arg>SUCESSO! Usuário cadastrado com sucesso</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:43:34.684" starttime="20201102 15:43:21.841"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:43:34.687" starttime="20201102 15:42:44.601"></status>
+</kw>
+<kw type="teardown" name="After Test" library="BasePage">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20201102 15:43:35.232" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20201102 15:43:35.232" starttime="20201102 15:43:34.696"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:43:35.233" starttime="20201102 15:43:34.691"></status>
+</kw>
+<tags>
+<tag>cadastro</tag>
+</tags>
+<status status="PASS" endtime="20201102 15:43:35.233" critical="yes" starttime="20201102 15:42:00.626"></status>
+</test>
+<test id="s1-s2-t2" name="Editar Funcionario">
+<kw name="Editar funcionario cadastrado" library="actions">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:btn-warning</arg>
+</arguments>
+<msg timestamp="20201102 15:43:35.239" level="INFO">Clicking element 'class:btn-warning'.</msg>
+<status status="PASS" endtime="20201102 15:43:36.598" starttime="20201102 15:43:35.238"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id=clt</arg>
+</arguments>
+<msg timestamp="20201102 15:43:36.599" level="INFO">Clicking element 'id=clt'.</msg>
+<status status="PASS" endtime="20201102 15:43:36.647" starttime="20201102 15:43:36.598"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:cadastrar-form-btn</arg>
+</arguments>
+<msg timestamp="20201102 15:43:36.647" level="INFO">Clicking element 'class:cadastrar-form-btn'.</msg>
+<status status="PASS" endtime="20201102 15:44:18.137" starttime="20201102 15:43:36.647"></status>
+</kw>
+<kw name="Wait Until Element Contains" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<arguments>
+<arg>class:alert</arg>
+<arg>SUCESSO! Informações atualizadas com sucesso</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:44:18.174" starttime="20201102 15:44:18.140"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:44:18.175" starttime="20201102 15:43:35.237"></status>
+</kw>
+<kw type="teardown" name="After Test" library="BasePage">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20201102 15:44:18.600" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20201102 15:44:18.600" starttime="20201102 15:44:18.178"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:44:18.601" starttime="20201102 15:44:18.177"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:44:18.601" critical="yes" starttime="20201102 15:43:35.234"></status>
+</test>
+<test id="s1-s2-t3" name="Deletar Funcionário">
+<kw name="Deletar funcionario cadastrado" library="actions">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id=delete-btn</arg>
+</arguments>
+<msg timestamp="20201102 15:44:18.604" level="INFO">Clicking element 'id=delete-btn'.</msg>
+<status status="PASS" endtime="20201102 15:44:51.672" starttime="20201102 15:44:18.604"></status>
+</kw>
+<kw name="Wait Until Element Contains" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<arguments>
+<arg>class:alert</arg>
+<arg>SUCESSO! Funcionário removido com sucesso</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:44:58.705" starttime="20201102 15:44:51.675"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:44:58.705" starttime="20201102 15:44:18.603"></status>
+</kw>
+<kw type="teardown" name="After Test WCLS" library="BasePage">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20201102 15:44:59.122" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20201102 15:44:59.122" starttime="20201102 15:44:58.710"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>localStorage.clear();</arg>
+</arguments>
+<msg timestamp="20201102 15:44:59.132" level="INFO">Executing JavaScript:
+localStorage.clear();
+Without any arguments.</msg>
+<status status="PASS" endtime="20201102 15:44:59.143" starttime="20201102 15:44:59.123"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:44:59.143" starttime="20201102 15:44:58.708"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:44:59.143" critical="yes" starttime="20201102 15:44:18.603"></status>
+</test>
+<kw type="teardown" name="Close Session" library="BasePage">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20201102 15:44:59.503" starttime="20201102 15:44:59.149"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:44:59.505" starttime="20201102 15:44:59.149"></status>
+</kw>
+<doc>Cadastro de um novo funcionario
+Sendo um administrador do sistema
+Quero cadastrar um novo funcionario no sistema</doc>
+<status status="PASS" endtime="20201102 15:44:59.505" starttime="20201102 15:41:36.550"></status>
+</suite>
+<suite source="/Users/lsantos/Documents/InMetrics/Java/teste-inmetrics/src/test/resources/Robot/tests/Login.robot" id="s1-s3" name="Login">
+<kw type="setup" name="Open Session" library="BasePage">
+<kw name="Open Chrome" library="BasePage">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${base_url}/accounts/login/</arg>
+<arg>chrome</arg>
+<arg>options=add_experimental_option('excludeSwitches', ['enable-logging'])</arg>
+</arguments>
+<msg timestamp="20201102 15:44:59.543" level="INFO">Opening browser 'chrome' to base url 'http://www.inmrobo.tk/accounts/login/'.</msg>
+<status status="PASS" endtime="20201102 15:45:14.422" starttime="20201102 15:44:59.542"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:45:14.423" starttime="20201102 15:44:59.541"></status>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<arguments>
+<arg>10</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:45:14.427" starttime="20201102 15:45:14.425"></status>
+</kw>
+<kw name="Set Window Size" library="SeleniumLibrary">
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<arguments>
+<arg>1280</arg>
+<arg>800</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:45:14.693" starttime="20201102 15:45:14.428"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:45:14.693" starttime="20201102 15:44:59.541"></status>
+</kw>
+<test id="s1-s3-t1" name="Login com sucesso">
+<kw name="Dado que eu acesso a página de login" library="actions">
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${base_url}/accounts/login</arg>
+</arguments>
+<msg timestamp="20201102 15:45:14.696" level="INFO">Opening url 'http://www.inmrobo.tk/accounts/login'</msg>
+<status status="PASS" endtime="20201102 15:45:15.888" starttime="20201102 15:45:14.695"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:45:15.889" starttime="20201102 15:45:14.695"></status>
+</kw>
+<kw name="Quando eu submeto minhas credenciais &quot;lucianeTest&quot; e &quot;123456&quot;" library="actions">
+<kw name="Login With" library="LoginPage">
+<arguments>
+<arg>${username}</arg>
+<arg>${pass}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=username]</arg>
+<arg>${username}</arg>
+</arguments>
+<msg timestamp="20201102 15:45:15.892" level="INFO">Typing text 'lucianeTest' into text field 'css:input[name=username]'.</msg>
+<status status="PASS" endtime="20201102 15:45:16.200" starttime="20201102 15:45:15.892"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>css:input[name=pass]</arg>
+<arg>${pass}</arg>
+</arguments>
+<msg timestamp="20201102 15:45:16.201" level="INFO">Typing text '123456' into text field 'css:input[name=pass]'.</msg>
+<status status="PASS" endtime="20201102 15:45:16.300" starttime="20201102 15:45:16.200"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>class:login100-form-btn</arg>
+</arguments>
+<msg timestamp="20201102 15:45:16.301" level="INFO">Clicking element 'class:login100-form-btn'.</msg>
+<status status="PASS" endtime="20201102 15:45:51.069" starttime="20201102 15:45:16.300"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:45:51.072" starttime="20201102 15:45:15.890"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:45:51.072" starttime="20201102 15:45:15.890"></status>
+</kw>
+<kw name="Entao devo ser autenticado" library="actions">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${LOGGED_USER}</arg>
+</arguments>
+<status status="PASS" endtime="20201102 15:45:51.108" starttime="20201102 15:45:51.075"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:45:51.108" starttime="20201102 15:45:51.073"></status>
+</kw>
+<kw type="teardown" name="After Test WCLS" library="BasePage">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20201102 15:45:51.761" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20201102 15:45:51.761" starttime="20201102 15:45:51.111"></status>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>localStorage.clear();</arg>
+</arguments>
+<msg timestamp="20201102 15:45:51.767" level="INFO">Executing JavaScript:
+localStorage.clear();
+Without any arguments.</msg>
+<status status="PASS" endtime="20201102 15:45:51.773" starttime="20201102 15:45:51.761"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:45:51.773" starttime="20201102 15:45:51.110"></status>
+</kw>
+<tags>
+<tag>login</tag>
+</tags>
+<status status="PASS" endtime="20201102 15:45:51.773" critical="yes" starttime="20201102 15:45:14.693"></status>
+</test>
+<kw type="teardown" name="Close Session" library="BasePage">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20201102 15:45:51.948" starttime="20201102 15:45:51.775"></status>
+</kw>
+<status status="PASS" endtime="20201102 15:45:51.948" starttime="20201102 15:45:51.775"></status>
+</kw>
+<doc>Login
+Sendo um usuario do sistema
+Quero me autenticar no sistema</doc>
+<status status="PASS" endtime="20201102 15:45:51.948" starttime="20201102 15:44:59.513"></status>
+</suite>
+<status status="PASS" endtime="20201102 15:45:51.951" starttime="20201102 15:41:19.383"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="6">Critical Tests</stat>
+<stat fail="0" pass="6">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="2">cadastro</stat>
+<stat fail="0" pass="1">login</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Tests" pass="6">Tests</stat>
+<stat fail="0" id="s1-s1" name="Cadastro" pass="2">Tests.Cadastro</stat>
+<stat fail="0" id="s1-s2" name="CadastroFuncionario" pass="3">Tests.CadastroFuncionario</stat>
+<stat fail="0" id="s1-s3" name="Login" pass="1">Tests.Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
