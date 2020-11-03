@@ -16,7 +16,7 @@ pipeline {
       stage('Test') {
          steps {
             echo 'Executando testes de regressão'
-            sh 'python -m robot  -d ./results ./tests'
+            sh 'python -m robot  -d ./results ./robot/tests'
          }
          post {
             always {
